@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Luis Alvero - Electrical & Computer Engineering Student | Software Developer | Machine Learning | Embedded Systems">
+    <title>Luis Alvero | Software & ML Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-tertiary: #2a2a2a;
+            --accent: #FF6B35;
+            --accent-dim: #ff6b3580;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-tertiary: #707070;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 3rem 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-content h1 .accent {
+            color: var(--accent);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            font-weight: 400;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 4rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .about-statement {
+            font-size: clamp(2rem, 3vw, 3rem);
+            font-weight: 700;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+        }
+
+        .about-statement .name {
+            color: var(--accent);
+        }
+
+        .about-description {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-description strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Tech Stack Circular Display */
+        .tech-universe {
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .tech-tagline {
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            font-weight: 700;
+            margin-bottom: 4rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        .tech-circle-container {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            margin: 0 auto;
+            max-width: 90vw;
+            max-height: 90vw;
+        }
+
+        .tech-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 30px var(--accent-dim);
+        }
+
+        .tech-item {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: var(--bg-secondary);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tech-item:hover {
+            transform: scale(1.1);
+            background: var(--bg-tertiary);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-dim);
+        }
+
+        .tech-item .icon {
+            font-size: 2.5rem;
+        }
+
+        .tech-item .label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* Position tech items in circle */
+        .tech-item:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+        .tech-item:nth-child(2) { top: 13%; right: 13%; }
+        .tech-item:nth-child(3) { top: 50%; right: 0; transform: translateY(-50%); }
+        .tech-item:nth-child(4) { bottom: 13%; right: 13%; }
+        .tech-item:nth-child(5) { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .tech-item:nth-child(6) { bottom: 13%; left: 13%; }
+        .tech-item:nth-child(7) { top: 50%; left: 0; transform: translateY(-50%); }
+        .tech-item:nth-child(8) { top: 13%; left: 13%; }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-link:hover {
+            opacity: 0.7;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .skill-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent);
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .timeline-item .date {
+            color: var(--accent);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-item li {
+            color: var(--text-secondary);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.7;
+        }
+
+        .timeline-item li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Education */
+        .education-card {
+            background: var(--bg-secondary);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 5px solid var(--accent);
+        }
+
+        .education-card h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .education-card .degree {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .date {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .majors {
+            list-style: none;
+            padding: 0;
+        }
+
+        .majors li {
+            padding: 0.8rem 0;
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        .majors li strong {
+            color: var(--text-primary);
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .contact-card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            margin: 0.3rem 0;
+        }
+
+        /* Scroll Animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .tech-circle-container {
+                width: 500px;
+                height: 500px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 1.5rem;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 4rem 1.5rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(10, 10, 10, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .tech-circle-container {
+                width: 400px;
+                height: 400px;
+            }
+
+            .tech-item {
+                width: 70px;
+                height: 70px;
+            }
+
+            .tech-item .icon {
+                font-size: 1.8rem;
+            }
+
+            .tech-item .label {
+                font-size: 0.65rem;
+            }
+
+            .tech-center {
+                width: 90px;
+                height: 90px;
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline-item::before {
+                left: -2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tech-circle-container {
+                width: 320px;
+                height: 320px;
+            }
+
+            .tech-item {
+                width: 60px;
+                height: 60px;
+            }
+
+            .tech-item .icon {
+                font-size: 1.5rem;
+            }
+
+            .tech-center {
+                width: 70px;
+                height: 70px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">LA</div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#tech">Tech</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="fade-in-up">
+                TURNING IDEAS<br>
+                INTO <span class="accent">REALITY</span>
+            </h1>
+            <p class="hero-subtitle fade-in-up" style="animation-delay: 0.2s;">
+                Electrical & Computer Engineering Student at FIU specializing in Software Development,
+                Machine Learning, and Embedded Systems
+            </p>
+        </div>
+        <div class="scroll-indicator">SCROLL</div>
+    </section>
+
+    <div class="container">
+        <section id="about" class="scroll-reveal">
+            <h2 class="section-title">About</h2>
+            <div class="about-grid">
+                <div class="about-statement">
+                    HI I'M <span class="name">LUIS</span>, I LOVE MAKING THINGS THAT HELP PEOPLE DO THEIR THING.
+                </div>
+                <div class="about-description">
+                    <p>
+                        Senior <strong>Electrical and Computer Engineering student at Florida International University (FIU)</strong>
+                        with hands-on experience in software development, machine learning, and embedded systems.
+                    </p>
+                    <p style="margin-top: 1.5rem;">
+                        I specialize in <strong>data systems software, autonomous systems, and embedded control design</strong> with
+                        strong applied knowledge in robotics and automation. Passionate about bridging hardware and software through
+                        innovative system design, backend automation, and applied AI.
+                    </p>
+                    <p style="margin-top: 1.5rem;">
+                        Seeking opportunities to apply technical expertise and creative problem-solving to build intelligent,
+                        data-driven solutions that make a real-world impact.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech" class="scroll-reveal">
+            <div class="tech-universe">
+                <div class="tech-tagline">ONE UNIVERSE. INFINITE POSSIBILITIES.</div>
+                <div class="tech-circle-container">
+                    <div class="tech-center">💻</div>
+                    <div class="tech-item">
+                        <div class="icon">🐍</div>
+                        <div class="label">Python</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="icon">☕</div>
+                        <div class="label">Java</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="icon">⚡</div>
+                        <div class="label">C++</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="icon">🐘</div>
+                        <div class="label">PHP</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="icon">🧠</div>
+                        <div class="label">TensorFlow</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="icon">🐳</div>
+                        <div class="label">Docker</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="icon">⚛️</div>
+                        <div class="label">React</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="icon">📊</div>
+                        <div class="label">SQL</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="scroll-reveal">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">📈</div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">TensorFlow</span>
+                            <span class="tag">Keras</span>
+                            <span class="tag">LSTM</span>
+                        </div>
+                        <h3>StockBot</h3>
+                        <p>
+                            Research-grade LSTM experiment runner for tick/candle market data. Implements feature engineering,
+                            sequence building, and Keras model training into a reproducible pipeline with artifact tracking.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://github.com/Luisalvero/StockBot" target="_blank" class="project-link">
+                                View on GitHub →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">💸</div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">PHP 8.2</span>
+                            <span class="tag">SQLite</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Docker</span>
+                        </div>
+                        <h3>BrokeMate</h3>
+                        <p>
+                            Production-ready expense splitting application built from scratch. Features complete MVC architecture,
+                            RESTful API design, debt simplification algorithms, and comprehensive security implementations.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://github.com/Luisalvero/BrokeMate" target="_blank" class="project-link">
+                                View on GitHub →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">💰</div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">OOP</span>
+                            <span class="tag">File I/O</span>
+                        </div>
+                        <h3>Personal Finance Manager</h3>
+                        <p>
+                            Full-featured Java application for personal budgeting. Enables users to input income and expenses,
+                            categorize transactions, and automatically generate detailed financial summaries.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">✅</div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Gmail API</span>
+                            <span class="tag">OpenWeather API</span>
+                        </div>
+                        <h3>Smart Task Manager</h3>
+                        <p>
+                            Productivity tool to manage tasks with add, complete, and export functionality. Integrated Gmail API
+                            for automated email alerts and OpenWeatherMap API for real-time weather updates.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="scroll-reveal">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Programming Languages</h3>
+                    <p>Proficient in multiple languages for systems, web, and ML development</p>
+                    <div class="skill-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Java</span>
+                        <span class="tag">C/C++</span>
+                        <span class="tag">PHP</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Machine Learning & AI</h3>
+                    <p>Model training, feature engineering, and deep learning implementations</p>
+                    <div class="skill-tags">
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag">Keras</span>
+                        <span class="tag">scikit-learn</span>
+                        <span class="tag">LSTM</span>
+                        <span class="tag">Ollama</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Web Development</h3>
+                    <p>Full-stack development with modern frameworks and tools</p>
+                    <div class="skill-tags">
+                        <span class="tag">Laravel</span>
+                        <span class="tag">Drupal</span>
+                        <span class="tag">REST APIs</span>
+                        <span class="tag">WordPress</span>
+                        <span class="tag">Docker</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Database Systems</h3>
+                    <p>Design, optimization, and management of relational databases</p>
+                    <div class="skill-tags">
+                        <span class="tag">MySQL</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">SQLite</span>
+                        <span class="tag">Schema Design</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Embedded Systems</h3>
+                    <p>Microcontrollers, control systems, and hardware-software integration</p>
+                    <div class="skill-tags">
+                        <span class="tag">Microcontrollers</span>
+                        <span class="tag">Telemetry</span>
+                        <span class="tag">Control Automation</span>
+                        <span class="tag">Robotics</span>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Security & Forensics</h3>
+                    <p>Cybersecurity research and digital forensics analysis</p>
+                    <div class="skill-tags">
+                        <span class="tag">Reverse Engineering</span>
+                        <span class="tag">MITM Analysis</span>
+                        <span class="tag">Digital Forensics</span>
+                        <span class="tag">Security Testing</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="scroll-reveal">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Project Intern</h3>
+                    <p class="date">VSBrooks | May 2021 - May 2022</p>
+                    <ul>
+                        <li>Managed data systems and created graphical illustrations for medical companies including CenterWell and Conviva</li>
+                        <li>Developed and maintained event plans using WordPress, supporting operational logistics</li>
+                        <li>Collaborated with clients to analyze design preferences and revise marketing materials</li>
+                        <li>Designed professional digital advertisements using Google Web Designer</li>
+                        <li>Participated in biweekly strategic meetings to align on company goals</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <h3>National MassMutual Foundation Program</h3>
+                    <p class="date">April 2022 - Present</p>
+                    <ul>
+                        <li>Earned certification demonstrating strong leadership, accountability, and ethical decision-making</li>
+                        <li>Gained proficiency in professional workplace communication</li>
+                        <li>Collaborated with cross-functional teams to reach shared goals</li>
+                        <li>Strengthened critical thinking and analytical abilities for solving complex problems</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="scroll-reveal">
+            <h2 class="section-title">Education</h2>
+            <div class="education-card">
+                <h3>Florida International University</h3>
+                <p class="degree">Bachelor of Science in Electrical and Computer Engineering</p>
+                <p class="date">Expected Graduation: Fall 2026 | Miami, Florida</p>
+                <ul class="majors">
+                    <li><strong>Major:</strong> Data System Software</li>
+                    <li><strong>Major:</strong> Autonomous Systems, Control & Robotics</li>
+                    <li><strong>Major:</strong> Embedded System Software</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact" class="scroll-reveal">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:luis@empcnet.com">luis@empcnet.com</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>Phone</h3>
+                    <a href="tel:+17864918568">786-491-8568</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://linkedin.com/in/luis-alvero" target="_blank">linkedin.com/in/luis-alvero</a>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">🔗</div>
+                    <h3>GitHub</h3>
+                    <a href="https://github.com/Luisalvero" target="_blank">github.com/Luisalvero</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Luis Alvero. All rights reserved.</p>
+        <p>Electrical & Computer Engineering Student | Software Developer | ML Engineer</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('revealed');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Header effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.8)';
+            }
+        });
+
+        // Scroll indicator click
+        document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
+            document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
