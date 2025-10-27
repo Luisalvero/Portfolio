@@ -554,6 +554,82 @@
             color: var(--text-primary);
         }
 
+        /* Academic Courses Grid */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .course-item {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .course-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .course-item h4 {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Extracurricular Section */
+        .extracurricular-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .activity-card {
+            background: var(--bg-secondary);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--accent);
+        }
+
+        .activity-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .activity-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .activity-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .activity-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
         /* Contact Section */
         .contact-grid {
             display: grid;
@@ -635,6 +711,10 @@
             }
 
             .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .extracurricular-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -745,7 +825,6 @@
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#about">About</a></li>
-                <li><a href="#tech">Tech</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
@@ -989,6 +1068,18 @@
                         <span class="tag">Security Testing</span>
                     </div>
                 </div>
+
+                <div class="skill-card">
+                    <h3>Tools & Design</h3>
+                    <p>Development tools and design software for professional workflows</p>
+                    <div class="skill-tags">
+                        <span class="tag">Git</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Adobe Illustrator</span>
+                        <span class="tag">Photoshop</span>
+                        <span class="tag">AutoCAD Inventor</span>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1031,6 +1122,54 @@
                     <li><strong>Major:</strong> Autonomous Systems, Control & Robotics</li>
                     <li><strong>Major:</strong> Embedded System Software</li>
                 </ul>
+            </div>
+        </section>
+
+        <section id="courses" class="scroll-reveal">
+            <h2 class="section-title">Academic Courses</h2>
+            <div class="courses-grid">
+                <div class="course-item">
+                    <h4>Calculus I, II, III</h4>
+                </div>
+                <div class="course-item">
+                    <h4>Physics I, II</h4>
+                </div>
+                <div class="course-item">
+                    <h4>Embedded Systems Programming</h4>
+                </div>
+                <div class="course-item">
+                    <h4>Reverse Malware Engineering</h4>
+                </div>
+                <div class="course-item">
+                    <h4>Circuits Analysis</h4>
+                </div>
+                <div class="course-item">
+                    <h4>Evaluation of Engineering Data</h4>
+                </div>
+            </div>
+        </section>
+
+        <section id="extracurricular" class="scroll-reveal">
+            <h2 class="section-title">Beyond Engineering</h2>
+            <div class="extracurricular-grid">
+                <div class="activity-card">
+                    <div class="activity-icon">🥋</div>
+                    <h3>Judo Practice</h3>
+                    <p>
+                        Practiced Judo while developing physical discipline, mental focus, and respect for structured learning
+                        environments. Gained resilience and perseverance through regular training and competition.
+                    </p>
+                </div>
+
+                <div class="activity-card">
+                    <div class="activity-icon">🎵</div>
+                    <h3>Church Ministry</h3>
+                    <p>
+                        Volunteered at local church multiple times weekly, contributing as a vocalist in the worship band
+                        and assisting with ministry operations. Displayed commitment, time management, and teamwork while
+                        supporting community outreach and spiritual development activities.
+                    </p>
+                </div>
             </div>
         </section>
 
