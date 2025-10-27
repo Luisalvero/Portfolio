@@ -236,7 +236,7 @@
             font-weight: 600;
         }
 
-        /* Tech Stack Circular Display */
+        /* Tech Stack Grid Display */
         .tech-universe {
             text-align: center;
             padding: 6rem 0;
@@ -250,74 +250,74 @@
             letter-spacing: 0.05em;
         }
 
-        .tech-circle-container {
-            position: relative;
-            width: 600px;
-            height: 600px;
+        .tech-grid-container {
+            max-width: 900px;
             margin: 0 auto;
-            max-width: 90vw;
-            max-height: 90vw;
-        }
-
-        .tech-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
-            background: var(--bg-secondary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            border: 2px solid var(--accent);
-            box-shadow: 0 0 30px var(--accent-dim);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            padding: 0 2rem;
         }
 
         .tech-item {
-            position: absolute;
-            width: 100px;
-            height: 100px;
             background: var(--bg-secondary);
-            border-radius: 50%;
+            border-radius: 20px;
+            padding: 2.5rem 1.5rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            gap: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .tech-item:hover::before {
+            transform: scaleX(1);
         }
 
         .tech-item:hover {
-            transform: scale(1.1);
-            background: var(--bg-tertiary);
+            transform: translateY(-10px);
             border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-dim);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.2);
         }
 
         .tech-item .icon {
-            font-size: 2.5rem;
+            font-size: 3.5rem;
+            transition: transform 0.4s ease;
+        }
+
+        .tech-item:hover .icon {
+            transform: scale(1.2) rotate(5deg);
         }
 
         .tech-item .label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 0.05em;
         }
 
-        /* Position tech items in circle */
-        .tech-item:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
-        .tech-item:nth-child(2) { top: 13%; right: 13%; }
-        .tech-item:nth-child(3) { top: 50%; right: 0; transform: translateY(-50%); }
-        .tech-item:nth-child(4) { bottom: 13%; right: 13%; }
-        .tech-item:nth-child(5) { bottom: 0; left: 50%; transform: translateX(-50%); }
-        .tech-item:nth-child(6) { bottom: 13%; left: 13%; }
-        .tech-item:nth-child(7) { top: 50%; left: 0; transform: translateY(-50%); }
-        .tech-item:nth-child(8) { top: 13%; left: 13%; }
+        .tech-item .sublabel {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
 
         /* Projects Grid */
         .projects-grid {
@@ -705,9 +705,9 @@
                 gap: 3rem;
             }
 
-            .tech-circle-container {
-                width: 500px;
-                height: 500px;
+            .tech-grid-container {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
             }
 
             .projects-grid {
@@ -758,28 +758,18 @@
                 display: flex;
             }
 
-            .tech-circle-container {
-                width: 400px;
-                height: 400px;
+            .tech-grid-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                padding: 0 1.5rem;
             }
 
             .tech-item {
-                width: 70px;
-                height: 70px;
+                padding: 2rem 1rem;
             }
 
             .tech-item .icon {
-                font-size: 1.8rem;
-            }
-
-            .tech-item .label {
-                font-size: 0.65rem;
-            }
-
-            .tech-center {
-                width: 90px;
-                height: 90px;
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             .projects-grid {
@@ -796,24 +786,21 @@
         }
 
         @media (max-width: 480px) {
-            .tech-circle-container {
-                width: 320px;
-                height: 320px;
+            .tech-grid-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
 
             .tech-item {
-                width: 60px;
-                height: 60px;
+                padding: 1.5rem 0.8rem;
             }
 
             .tech-item .icon {
-                font-size: 1.5rem;
+                font-size: 2rem;
             }
 
-            .tech-center {
-                width: 70px;
-                height: 70px;
-                font-size: 1.5rem;
+            .tech-item .label {
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -876,39 +863,46 @@
         <section id="tech" class="scroll-reveal">
             <div class="tech-universe">
                 <div class="tech-tagline">ONE UNIVERSE. INFINITE POSSIBILITIES.</div>
-                <div class="tech-circle-container">
-                    <div class="tech-center">💻</div>
+                <div class="tech-grid-container">
                     <div class="tech-item">
                         <div class="icon">🐍</div>
-                        <div class="label">Python</div>
+                        <div class="label">PYTHON</div>
+                        <div class="sublabel">ML & Backend</div>
                     </div>
                     <div class="tech-item">
                         <div class="icon">☕</div>
-                        <div class="label">Java</div>
+                        <div class="label">JAVA</div>
+                        <div class="sublabel">OOP & Systems</div>
                     </div>
                     <div class="tech-item">
                         <div class="icon">⚡</div>
-                        <div class="label">C++</div>
+                        <div class="label">C/C++</div>
+                        <div class="sublabel">Embedded</div>
                     </div>
                     <div class="tech-item">
                         <div class="icon">🐘</div>
                         <div class="label">PHP</div>
+                        <div class="sublabel">Web Backend</div>
                     </div>
                     <div class="tech-item">
                         <div class="icon">🧠</div>
-                        <div class="label">TensorFlow</div>
-                    </div>
-                    <div class="tech-item">
-                        <div class="icon">🐳</div>
-                        <div class="label">Docker</div>
+                        <div class="label">TENSORFLOW</div>
+                        <div class="sublabel">Deep Learning</div>
                     </div>
                     <div class="tech-item">
                         <div class="icon">⚛️</div>
-                        <div class="label">React</div>
+                        <div class="label">REACT</div>
+                        <div class="sublabel">Frontend</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="icon">🐳</div>
+                        <div class="label">DOCKER</div>
+                        <div class="sublabel">DevOps</div>
                     </div>
                     <div class="tech-item">
                         <div class="icon">📊</div>
                         <div class="label">SQL</div>
+                        <div class="sublabel">Databases</div>
                     </div>
                 </div>
             </div>
